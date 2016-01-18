@@ -10,30 +10,26 @@
 
 namespace Babylon\PromotionalRule;
 
-use Babylon\Container\CartContainer;
 use Babylon\Model\PromotionalRule\MinimumItemPromotionalRule;
-use Babylon\Model\PromotionalRule\PricePromotionalRuleInterface;
+use Babylon\Model\PromotionalRule\ProductPricePromotionalRuleInterface;
 
 /**
  * Class ProductPricePromotionalRule
  */
-class ProductPricePromotionalRule extends MinimumItemPromotionalRule implements PricePromotionalRuleInterface
+class ProductPricePromotionalRule extends MinimumItemPromotionalRule implements ProductPricePromotionalRuleInterface
 {
     /**
-     * @param CartContainer $cart
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function apply($cart)
+    public function needApply($cart)
     {
         $item = $cart->get($this->getItem()->getCode());
 
         if ($item->getQuantity() >= $this->getValue()) {
-            $item->setPrice($this->getAmount());
-            $cart->calculateTotal();
+            return true;
         }
 
-        return $this;
+        return false;
     }
 
     /**

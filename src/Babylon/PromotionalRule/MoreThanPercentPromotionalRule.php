@@ -10,7 +10,6 @@
 
 namespace Babylon\PromotionalRule;
 
-use Babylon\Container\CartContainer;
 use Babylon\Model\PromotionalRule\PercentPromotionalRuleInterface;
 use Babylon\Model\PromotionalRule\PromotionalRule;
 
@@ -20,24 +19,16 @@ use Babylon\Model\PromotionalRule\PromotionalRule;
 class MoreThanPercentPromotionalRule extends PromotionalRule implements PercentPromotionalRuleInterface
 {
     /**
-     * @param CartContainer $cart
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function apply($cart)
+    public function needApply($cart)
     {
-        $total = $cart->getTotal();
-
-        if ($total > $this->getAmount()) {
-            $cart->setTotal($this->calculatePercentage($total));
+        if ($cart->getTotal() > $this->getAmount()) {
+            return true;
+//            $cart->setTotal($this->calculatePercentage($total));
         }
 
-        return $this;
-    }
-
-    protected function calculatePercentage($amount)
-    {
-        return $amount - ($amount / 100 * $this->getValue());
+        return false;
     }
 
     /**

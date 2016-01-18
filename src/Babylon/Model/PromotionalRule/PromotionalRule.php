@@ -70,7 +70,28 @@ abstract class PromotionalRule implements PromotionalRuleInterface
     /**
      * @param CartContainer $cart
      *
+     * @return bool
+     */
+    abstract public function needApply($cart);
+
+    /**
+     * @param CartContainer $cart
+     *
      * @return $this
      */
-    abstract public function apply($cart);
+    public function apply(CartContainer $cart)
+    {
+        if ($this instanceof PercentPromotionalRuleInterface) {
+            $total = $cart->getTotal();
+            $cart->setTotal($total - ($total / 100 * $this->getValue()));
+        }
+
+        if ($this instanceof ProductPricePromotionalRuleInterface) {
+            $item = $cart->get($this->getItem()->getCode());
+            $item->setPrice($this->getAmount());
+            $cart->calculateTotal();
+        }
+
+        return $this;
+    }
 }
