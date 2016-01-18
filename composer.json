@@ -1,0 +1,11 @@
+{
+    "name": "bh/test",
+    "license": "MIT",
+    "type": "project",
+    "description": "The BH test",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}
