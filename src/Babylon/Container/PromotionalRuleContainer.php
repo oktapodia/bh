@@ -11,6 +11,7 @@
 namespace Babylon\Container;
 
 use Babylon\Model\PromotionalRule\PromotionalRule;
+use Babylon\Model\PromotionalRule\PromotionalRuleInterface;
 
 /**
  * Class PromotionalRuleContainer
@@ -41,11 +42,11 @@ class PromotionalRuleContainer
     }
 
     /**
-     * @param PromotionalRule $promotionalRule
+     * @param PromotionalRuleInterface $promotionalRule
      *
      * @return $this
      */
-    public function add(PromotionalRule $promotionalRule)
+    public function add(PromotionalRuleInterface $promotionalRule)
     {
         if (!in_array($promotionalRule, $this->promotionalRules)) {
             $this->promotionalRules[$promotionalRule->getName()] = $promotionalRule;

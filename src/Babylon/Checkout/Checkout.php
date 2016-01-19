@@ -39,12 +39,20 @@ class Checkout implements CheckoutInterface
     }
 
     /**
+     * return array|Item[]
+     */
+    public function getItems()
+    {
+        return $this->cart->getAll();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function total()
     {
         $this->cart->applyPromotionalRules();
 
-        return $this->cart->getTotal();
+        return round($this->cart->getTotal(), 2);
     }
 }

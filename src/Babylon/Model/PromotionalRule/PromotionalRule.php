@@ -15,7 +15,7 @@ use Babylon\Container\CartContainer;
 /**
  * Class PromotionalRule
  */
-abstract class PromotionalRule implements PromotionalRuleInterface
+abstract class PromotionalRule implements PromotionalRuleInterface, PromotionalRuleApplyInterface
 {
     /**
      * @var float
@@ -28,7 +28,7 @@ abstract class PromotionalRule implements PromotionalRuleInterface
     protected $amount;
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getAmount()
     {
@@ -48,7 +48,7 @@ abstract class PromotionalRule implements PromotionalRuleInterface
     }
 
     /**
-     * @return float
+     * {@inheritdoc}
      */
     public function getValue()
     {

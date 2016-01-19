@@ -12,8 +12,7 @@ namespace Babylon\Container;
 
 use Babylon\Calculator\TotalCalculator;
 use Babylon\Model\Item;
-use Babylon\Model\PromotionalRule\PercentPromotionalRuleInterface;
-use Babylon\Model\PromotionalRule\PricePromotionalRuleInterface;
+use Babylon\Model\PromotionalRule\PromotionalRuleApplyInterface;
 
 /**
  * Class CartContainer
@@ -88,8 +87,10 @@ class CartContainer
     public function applyPromotionalRules()
     {
         foreach ($this->promotionalRules->getAll() as $promotionalRule) {
-            if ($promotionalRule->needApply($this)) {
-                $promotionalRule->apply($this);
+            if ($promotionalRule instanceof PromotionalRuleApplyInterface) {
+                if ($promotionalRule->needApply($this)) {
+                    $promotionalRule->apply($this);
+                }
             }
         }
 

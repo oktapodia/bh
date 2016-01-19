@@ -25,7 +25,6 @@ class MoreThanPercentPromotionalRule extends PromotionalRule implements PercentP
     {
         if ($cart->getTotal() > $this->getAmount()) {
             return true;
-//            $cart->setTotal($this->calculatePercentage($total));
         }
 
         return false;

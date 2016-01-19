@@ -13,22 +13,11 @@ namespace Babylon\Model\PromotionalRule;
 use Babylon\Container\CartContainer;
 
 /**
- * Interface PromotionalRuleInterface
+ * Interface PromotionalRuleApplyInterface
  */
-interface PromotionalRuleInterface
+interface PromotionalRuleApplyInterface
 {
-    /**
-     * @return string
-     */
-    public function getName();
+    public function needApply($cart);
 
-    /**
-     * @return string
-     */
-    public function getAmount();
-
-    /**
-     * @return string
-     */
-    public function getValue();
+    public function apply(CartContainer $cart);
 }

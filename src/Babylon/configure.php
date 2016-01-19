@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+
 namespace Babylon;
 
 use Babylon\Container\PromotionalRuleContainer;
@@ -49,3 +50,4 @@ $rule2
 $promotionalRuleContainer = new PromotionalRuleContainer();
 $promotionalRuleContainer->add($rule1);
 $promotionalRuleContainer->add($rule2);
+
