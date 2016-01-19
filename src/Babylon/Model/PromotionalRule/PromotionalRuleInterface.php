@@ -10,8 +10,6 @@
 
 namespace Babylon\Model\PromotionalRule;
 
-use Babylon\Container\CartContainer;
-
 /**
  * Interface PromotionalRuleInterface
  */
